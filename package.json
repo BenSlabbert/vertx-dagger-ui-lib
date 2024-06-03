@@ -1,7 +1,7 @@
 {
 	"name": "@benslabbert/vertx-dagger-ui-lib",
 	"description": "A Svelte library for Vert.x and Dagger",
-	"version": "1.3.0",
+	"version": "1.4.0",
 	"main": "dist/index.js",
 	"scripts": {
 		"dev": "vite dev",
