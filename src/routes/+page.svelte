@@ -1,9 +1,7 @@
 <script>
-	import Header from '$lib/component/Header.svelte';
+	import Footer from '$lib/component/Footer.svelte';
 </script>
 
 <div>hello</div>
 
-<Header name="name">
-	<div>another element</div>
-</Header>
+<Footer />
