@@ -1,0 +1,28 @@
+---
+name: 'Deploy Tag'
+'on':
+  create:
+    tags:
+      - '*'
+jobs:
+  build:
+    runs-on: 'ubuntu-latest'
+    env:
+      GH_TOKEN: '${{ secrets.GH_TOKEN }}'
+    steps:
+      - uses: 'actions/checkout@v4'
+      - name: 'Setup node'
+        uses: 'actions/setup-node@v4'
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: 'package-lock.json'
+      - run: 'npm set "//npm.pkg.github.com/:_authToken=$GH_TOKEN"'
+      - run: 'node --version'
+      - run: 'npm --version'
+      - run: 'make'
+      - run: 'make lint'
+      - run: 'make test'
+      - run: 'make package'
+      - run: 'make build'
+      - run: 'make publish'
