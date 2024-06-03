@@ -2,36 +2,39 @@
 
 .PHONY: install
 install:
-	yarn
-	yarn install
+	npm install
 
 .PHONY: dev
 dev:
-	yarn run dev
+	npm run dev
 
 .PHONY: check
 check:
-	yarn run check
+	npm run check
 
 .PHONY: package
 package:
-	yarn run package
+	npm run package
 
 .PHONY: build
 build:
-	yarn run build
+	npm run build
 
 .PHONY: lint
 lint:
-	yarn run lint
+	npm run lint
 
 .PHONY: test
 test:
-	yarn run test
+	npm run test
 
 .PHONY: fmt
 fmt:
-	yarn run format
+	npm run format
+
+.PHONY: publish
+publish:
+	npm run publish
 
 .PHONY: clean
 clean:
