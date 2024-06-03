@@ -35,7 +35,7 @@ fmt:
 
 .PHONY: publish
 publish:
-	npm run publish
+	npm publish
 
 .PHONY: clean
 clean:
