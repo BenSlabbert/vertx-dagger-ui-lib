@@ -1,34 +1,34 @@
 ---
-name: 'Deploy Tag'
-'on':
+name: "Deploy Tag"
+"on":
   create:
     tags:
-      - '*'
+      - "*"
 jobs:
   build:
-    runs-on: 'ubuntu-latest'
+    runs-on: "ubuntu-latest"
     env:
-      GH_TOKEN: '${{ secrets.GH_TOKEN }}'
+      GH_TOKEN: "${{ secrets.GH_TOKEN }}"
     steps:
-      - uses: 'actions/checkout@v4'
-      - name: 'Setup node'
-        uses: 'actions/setup-node@v4'
+      - uses: "actions/checkout@v4"
+      - name: "Setup node"
+        uses: "actions/setup-node@v4"
         with:
           node-version: 20
-          cache: 'npm'
-          cache-dependency-path: 'package-lock.json'
+          cache: "npm"
+          cache-dependency-path: "package-lock.json"
       - run: 'npm set "//npm.pkg.github.com/:_authToken=$GH_TOKEN"'
-      - run: 'node --version'
-      - run: 'npm --version'
-      - run: 'make'
-      - run: 'make lint'
-      - run: 'make test'
-      - run: 'make package'
-      - run: 'make build'
-      - run: 'make publish'
-      - name: 'Release'
-        uses: 'softprops/action-gh-release@v2'
+      - run: "node --version"
+      - run: "npm --version"
+      - run: "make"
+      - run: "make lint"
+      - run: "make test"
+      - run: "make package"
+      - run: "make build"
+      - run: "make publish"
+      - name: "Release"
+        uses: "softprops/action-gh-release@v2"
         with:
-          generate_release_notes: 'true'
-          make_latest: 'true'
-          token: '${{ secrets.GH_TOKEN }}'
+          generate_release_notes: "true"
+          make_latest: "true"
+          token: "${{ secrets.GH_TOKEN }}"

@@ -40,3 +40,6 @@ publish:
 .PHONY: clean
 clean:
 	rm -rf dist
+	rm -rf test-results
+	rm -rf .svelte-kit
+	rm -rf node_modules
