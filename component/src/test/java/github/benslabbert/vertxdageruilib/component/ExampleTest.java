@@ -49,7 +49,10 @@ class ExampleTest {
     context = browser.newContext();
     page = context.newPage();
     config =
-        Config.builder().profile(Config.Profile.PROD).httpConfig(Config.HttpConfig.builder().port(getPort()).build()).build();
+        Config.builder()
+            .profile(Config.Profile.PROD)
+            .httpConfig(Config.HttpConfig.builder().port(getPort()).build())
+            .build();
     JsonObject cfg = ConfigEncoder.encode(config);
     vertx.deployVerticle(
         new ComponentVerticle(),

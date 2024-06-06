@@ -13,10 +13,21 @@
   <version>${revision}</version>
   <packaging>pom</packaging>
 
+  <name>Vert.x Dagger UI Lib</name>
+  <description>Svelte Component sfor Vert.x Dagger Apps</description>
+
   <modules>
     <module>component</module>
     <module>svelte</module>
   </modules>
+
+  <distributionManagement>
+    <repository>
+      <id>github</id>
+      <name>GitHub BenSlabbert Apache Maven Packages</name>
+      <url>https://maven.pkg.github.com/BenSlabbert/vertx-dagger-ui-lib</url>
+    </repository>
+  </distributionManagement>
 
   <properties>
     <playwright.vesion>1.44.0</playwright.vesion>
