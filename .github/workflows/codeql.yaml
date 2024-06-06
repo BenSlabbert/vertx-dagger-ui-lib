@@ -13,6 +13,8 @@ jobs:
   analyze-js:
     name: "Analyze JavaScript"
     runs-on: "ubuntu-latest"
+    env:
+      GH_TOKEN: "${{ secrets.GH_TOKEN }}"
     timeout-minutes: 360
     permissions:
       actions: "read"
