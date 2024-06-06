@@ -1,14 +1,18 @@
 /* Licensed under Apache-2.0 2024. */
 package github.benslabbert.vertxdageruilib.component;
 
+import static github.benslabbert.vertxdaggercommons.FreePortUtility.getPort;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.microsoft.playwright.Browser;
 import com.microsoft.playwright.BrowserContext;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
+import github.benslabbert.vertxdaggercommons.ConfigEncoder;
+import github.benslabbert.vertxdaggercommons.config.Config;
 import io.vertx.core.DeploymentOptions;
 import io.vertx.core.Vertx;
+import io.vertx.core.json.JsonObject;
 import io.vertx.junit5.VertxExtension;
 import io.vertx.junit5.VertxTestContext;
 import org.junit.jupiter.api.AfterAll;
@@ -23,6 +27,7 @@ class ExampleTest {
 
   private static Playwright playwright;
   private static Browser browser;
+  private Config config;
 
   @BeforeAll
   static void launchBrowser() {
@@ -43,8 +48,13 @@ class ExampleTest {
   void createContextAndPage(Vertx vertx, VertxTestContext testContext) {
     context = browser.newContext();
     page = context.newPage();
+    config =
+        Config.builder().profile(Config.Profile.PROD).httpConfig(Config.HttpConfig.builder().port(getPort()).build()).build();
+    JsonObject cfg = ConfigEncoder.encode(config);
     vertx.deployVerticle(
-        new ComponentVerticle(), new DeploymentOptions(), testContext.succeedingThenComplete());
+        new ComponentVerticle(),
+        new DeploymentOptions().setConfig(cfg),
+        testContext.succeedingThenComplete());
   }
 
   @AfterEach
@@ -54,7 +64,7 @@ class ExampleTest {
 
   @Test
   void test() {
-    page.navigate("http://127.0.0.1:8080");
+    page.navigate("http://127.0.0.1:" + config.httpConfig().port());
     page.waitForCondition(page.querySelector("div")::isVisible);
 
     String footer = page.getByTestId("footer").first().innerText();

@@ -20,14 +20,31 @@
 
   <properties>
     <playwright.vesion>1.44.0</playwright.vesion>
+
+    <!--deps-->
+    <vertx-dagger-commons.version>1.18.0</vertx-dagger-commons.version>
   </properties>
 
   <dependencyManagement>
     <dependencies>
       <dependency>
+        <groupId>github.benslabbert.vertx-dagger-commons</groupId>
+        <artifactId>commons</artifactId>
+        <version>${vertx-dagger-commons.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>github.benslabbert.vertx-dagger-commons</groupId>
+        <artifactId>commons</artifactId>
+        <version>${vertx-dagger-commons.version}</version>
+        <classifier>tests</classifier>
+        <type>test-jar</type>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
         <groupId>com.microsoft.playwright</groupId>
         <artifactId>playwright</artifactId>
         <version>${playwright.vesion}</version>
+        <scope>test</scope>
       </dependency>
     </dependencies>
   </dependencyManagement>
