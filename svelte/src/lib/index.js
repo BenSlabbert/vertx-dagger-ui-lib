@@ -1,3 +1,3 @@
-import * as component from './component/*.svelte';
+import Footer from './component/Footer.svelte';
 
-export { component };
+export { Footer };
