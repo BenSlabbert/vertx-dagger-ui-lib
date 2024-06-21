@@ -26,7 +26,6 @@ updates:
   - "vertx-dagger-bom"
   - "git-version-extension"
   - "vertx-dagger-commons"
-  - "tx-manager"
   labels:
   - "dependencies"
 - package-ecosystem: "github-actions"
