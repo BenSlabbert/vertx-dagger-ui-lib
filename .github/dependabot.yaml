@@ -28,6 +28,7 @@ updates:
   - "vertx-dagger-commons"
   labels:
   - "dependencies"
+  - "automerge"
 - package-ecosystem: "github-actions"
   directory: "/"
   schedule:
@@ -35,3 +36,4 @@ updates:
   open-pull-requests-limit: 10
   labels:
   - "dependencies"
+  - "automerge"
