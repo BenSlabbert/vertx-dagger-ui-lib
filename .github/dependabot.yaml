@@ -17,10 +17,10 @@ registries:
     username: "BenSlabbert"
     password: "${{ secrets.GH_TOKEN }}"
 updates:
-- package-ecosystem: "npm"
+- package-ecosystem: "maven"
   directory: "/"
   schedule:
-    interval: "daily"
+    interval: "weekly"
   open-pull-requests-limit: 10
   registries:
   - "vertx-dagger-bom"
@@ -37,3 +37,18 @@ updates:
   labels:
   - "dependencies"
   - "automerge"
+- package-ecosystem: "npm"
+  directory: "/svelte"
+  schedule:
+    interval: "weekly"
+  open-pull-requests-limit: 10
+  labels:
+  - "dependencies"
+  - "automerge"
+  groups:
+    updates:
+      patterns:
+      - "*"
+      update-types:
+      - "minor"
+      - "patch"

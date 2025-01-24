@@ -33,6 +33,7 @@ jobs:
     - run: "mvn -s settings.xml -pl playwright install"
     - run: "mvn -s settings.xml -pl playwright exec:java -Dexec.mainClass=com.microsoft.playwright.CLI\
         \ -Dexec.args=\"install --with-deps\""
+    - run: "make M='mvn -s settings.xml' clean"
     - run: "make M='mvn -s settings.xml' fmtCheck"
     - run: "make -C svelte"
     - run: "make -C svelte lint"
