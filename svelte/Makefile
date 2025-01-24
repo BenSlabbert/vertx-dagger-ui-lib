@@ -26,7 +26,6 @@ lint:
 
 .PHONY: test
 test:
-	npx playwright install --with-deps
 	npm run test
 
 .PHONY: fmt
