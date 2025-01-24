@@ -5,7 +5,7 @@
   <parent>
     <groupId>github.benslabbert</groupId>
     <artifactId>vertx-dagger-bom</artifactId>
-    <version>1.23.0</version>
+    <version>1.88.0</version>
   </parent>
 
   <groupId>github.benslabbert.vertx-dager-ui-lib</groupId>
@@ -19,6 +19,7 @@
   <modules>
     <module>component</module>
     <module>svelte</module>
+    <module>playwright</module>
   </modules>
 
   <distributionManagement>
@@ -30,10 +31,8 @@
   </distributionManagement>
 
   <properties>
-    <playwright.vesion>1.44.0</playwright.vesion>
-
     <!--deps-->
-    <vertx-dagger-commons.version>1.18.0</vertx-dagger-commons.version>
+    <vertx-dagger-commons.version>1.72.0</vertx-dagger-commons.version>
   </properties>
 
   <dependencyManagement>
@@ -42,12 +41,6 @@
         <groupId>github.benslabbert.vertx-dagger-commons</groupId>
         <artifactId>commons</artifactId>
         <version>${vertx-dagger-commons.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.microsoft.playwright</groupId>
-        <artifactId>playwright</artifactId>
-        <version>${playwright.vesion}</version>
-        <scope>test</scope>
       </dependency>
       <dependency>
         <groupId>github.benslabbert.vertx-dagger-commons</groupId>
