@@ -30,7 +30,7 @@ jobs:
     - run: "node --version"
     - run: "npm --version"
     - run: "mvn --version"
-    - run: "mvn -s settings.xml install -pl playwright"
+    - run: "mvn -s settings.xml install -pl playwright --no-transfer-progress"
     - run: "mvn -pl playwright exec:java -Dexec.mainClass=com.microsoft.playwright.CLI\
         \ -Dexec.args=\"install --with-deps\""
     - run: "make M='mvn -s settings.xml' fmtCheck"
