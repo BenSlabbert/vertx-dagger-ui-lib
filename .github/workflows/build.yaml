@@ -33,10 +33,10 @@ jobs:
     - run: "mvn -s settings.xml -pl playwright --no-transfer-progress install"
     - run: "mvn -s settings.xml -pl playwright exec:java -Dexec.mainClass=com.microsoft.playwright.CLI\
         \ -Dexec.args=\"install --with-deps\""
-    - run: "make M='mvn -s settings.xml' fmtCheck"
+    - run: "make M='mvn -s settings.xml --no-transfer-progress' fmtCheck"
     - run: "make -C svelte"
     - run: "make -C svelte lint"
     - run: "make -C svelte test"
     - run: "make -C svelte package"
     - run: "make -C svelte build"
-    - run: "make M='mvn -s settings.xml'"
+    - run: "make M='mvn -s settings.xml --no-transfer-progress'"
