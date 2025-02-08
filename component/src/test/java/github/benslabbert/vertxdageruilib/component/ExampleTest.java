@@ -1,15 +1,14 @@
 /* Licensed under Apache-2.0 2024. */
 package github.benslabbert.vertxdageruilib.component;
 
-import static github.benslabbert.vertxdaggercommons.FreePortUtility.getPort;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.microsoft.playwright.Browser;
 import com.microsoft.playwright.BrowserContext;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
-import github.benslabbert.vertxdaggercommons.ConfigEncoder;
 import github.benslabbert.vertxdaggercommons.config.Config;
+import github.benslabbert.vertxdaggercommons.test.ConfigEncoder;
 import io.vertx.core.DeploymentOptions;
 import io.vertx.core.Vertx;
 import io.vertx.core.json.JsonObject;
@@ -27,7 +26,6 @@ class ExampleTest {
 
   private static Playwright playwright;
   private static Browser browser;
-  private Config config;
 
   @BeforeAll
   static void launchBrowser() {
@@ -41,23 +39,23 @@ class ExampleTest {
   }
 
   // New instance for each test method.
-  BrowserContext context;
-  Page page;
+  private BrowserContext context;
+  private Page page;
+  private ComponentVerticle verticle;
 
   @BeforeEach
   void createContextAndPage(Vertx vertx, VertxTestContext testContext) {
     context = browser.newContext();
     page = context.newPage();
-    config =
+    Config config =
         Config.builder()
             .profile(Config.Profile.PROD)
-            .httpConfig(Config.HttpConfig.builder().port(getPort()).build())
+            .httpConfig(Config.HttpConfig.builder().port(0).build())
             .build();
     JsonObject cfg = ConfigEncoder.encode(config);
+    verticle = new ComponentVerticle();
     vertx.deployVerticle(
-        new ComponentVerticle(),
-        new DeploymentOptions().setConfig(cfg),
-        testContext.succeedingThenComplete());
+        verticle, new DeploymentOptions().setConfig(cfg), testContext.succeedingThenComplete());
   }
 
   @AfterEach
@@ -67,7 +65,7 @@ class ExampleTest {
 
   @Test
   void test() {
-    page.navigate("http://127.0.0.1:" + config.httpConfig().port());
+    page.navigate("http://127.0.0.1:" + verticle.getPort());
     page.waitForCondition(page.querySelector("div")::isVisible);
 
     String footer = page.getByTestId("footer").first().innerText();
