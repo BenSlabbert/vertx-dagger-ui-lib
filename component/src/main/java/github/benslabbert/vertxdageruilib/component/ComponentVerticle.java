@@ -45,6 +45,10 @@ public class ComponentVerticle extends AbstractVerticle {
                 });
   }
 
+  public int getPort() {
+    return server.actualPort();
+  }
+
   @Override
   public void stop(Promise<Void> stopPromise) {
     server.close(stopPromise);
