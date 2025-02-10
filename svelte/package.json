@@ -44,7 +44,7 @@
 		"globals": "^15.3.0",
 		"prettier": "^3.3.0",
 		"prettier-plugin-svelte": "^3.2.3",
-		"publint": "^0.2.8",
+		"publint": "^0.3.4",
 		"svelte": "^5.0.0-next.148",
 		"svelte-check": "^4.1.4",
 		"tslib": "^2.6.2",
