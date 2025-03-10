@@ -32,7 +32,7 @@
 
   <properties>
     <!--deps-->
-    <vertx-dagger-commons.version>1.100.0</vertx-dagger-commons.version>
+    <vertx-dagger-commons.version>1.102.0</vertx-dagger-commons.version>
   </properties>
 
   <dependencyManagement>
