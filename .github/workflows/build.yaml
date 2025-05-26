@@ -42,7 +42,7 @@ jobs:
     - run: "make -C svelte test"
     - run: "make M='mvn -s settings.xml'"
     - name: "Submit Dependency Snapshot"
-      uses: "advanced-security/maven-dependency-submission-action@v4"
+      uses: "advanced-security/maven-dependency-submission-action@v5"
       with:
         token: "${{ secrets.GH_TOKEN }}"
         maven-args: "-s settings.xml"
