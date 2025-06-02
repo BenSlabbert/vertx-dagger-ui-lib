@@ -54,8 +54,9 @@ class ExampleTest {
             .build();
     JsonObject cfg = ConfigEncoder.encode(config);
     verticle = new ComponentVerticle();
-    vertx.deployVerticle(
-        verticle, new DeploymentOptions().setConfig(cfg), testContext.succeedingThenComplete());
+    vertx
+        .deployVerticle(verticle, new DeploymentOptions().setConfig(cfg))
+        .onComplete(testContext.succeedingThenComplete());
   }
 
   @AfterEach
