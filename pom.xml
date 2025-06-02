@@ -33,7 +33,7 @@
 
   <properties>
     <!--deps-->
-    <vertx-dagger-commons.version>1.140.0</vertx-dagger-commons.version>
+    <vertx-dagger-commons.version>1.145.0</vertx-dagger-commons.version>
   </properties>
 
   <dependencyManagement>
