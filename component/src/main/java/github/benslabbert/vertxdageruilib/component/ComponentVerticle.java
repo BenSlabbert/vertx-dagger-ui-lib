@@ -28,21 +28,22 @@ public class ComponentVerticle extends AbstractVerticle {
     Router router = Router.router(vertx);
     router.route("/*").handler(ctx -> StaticHandler.create("svelte").handle(ctx));
 
-    server =
-        vertx
-            .createHttpServer(
-                new HttpServerOptions().setPort(config.httpConfig().port()).setHost("0.0.0.0"))
-            .requestHandler(router)
-            .listen(
-                res -> {
-                  if (res.succeeded()) {
-                    log.info("started http server");
-                    startPromise.complete();
-                  } else {
-                    log.error("failed to start verticle", res.cause());
-                    startPromise.fail(res.cause());
-                  }
-                });
+    vertx
+        .createHttpServer(
+            new HttpServerOptions().setPort(config.httpConfig().port()).setHost("0.0.0.0"))
+        .requestHandler(router)
+        .listen()
+        .onComplete(
+            res -> {
+              if (res.succeeded()) {
+                log.info("started http server");
+                server = res.result();
+                startPromise.complete();
+              } else {
+                log.error("failed to start verticle", res.cause());
+                startPromise.fail(res.cause());
+              }
+            });
   }
 
   public int getPort() {
@@ -51,6 +52,6 @@ public class ComponentVerticle extends AbstractVerticle {
 
   @Override
   public void stop(Promise<Void> stopPromise) {
-    server.close(stopPromise);
+    server.close().onComplete(stopPromise);
   }
 }
